@@ -1,6 +1,6 @@
 <!-- hello.html -->
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,8 +54,8 @@
 <main class="form-signin mx-auto w-50 text-center">
     <h1 class="mb-4">Hello! It's booking</h1>
     <div class="d-grid gap-2">
-        <button class="btn btn-primary" type="button">Sign in</button>
-        <button class="btn btn-secondary" type="button">Registration</button>
+        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/login}'|">Sign in</button>
+        <button class="btn btn-secondary" type="button" th:onclick="|location.href='@{/registration}'|">Registration</button>
     </div>
 </main>
 
