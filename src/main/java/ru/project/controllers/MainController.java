@@ -10,6 +10,6 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("title", "пользователь");
-        return "login";
+        return "first";
     }
 }
