@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список недвижимости</title>
+    <style>
+        body {
+            text-align: center; /* Center the content */
+        }
+        table {
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse;
+            margin-top: 7rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Список недвижимости</h1>
+<div th:each="el : ${properties}" class="alert alert-info mt-2">
+    <h3 th:text="${el.title}"></h3>
+    <a th:href="'/list/' + ${el.id}">Детальнее</a>
+</div>
+</body>
+</html>

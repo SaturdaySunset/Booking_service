@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список недвижимости</title>
+    <style>
+        body {
+            text-align: center; /* Center the content */
+        }
+        table {
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse;
+            margin-top: 7rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Добавление недвижимости</h1>
+<form action="/list/add" method="post">
+    <input type="text" name="title" placeholder="Введите название объекта" class="form-control"><br>
+    <textarea name="full_text" placeholder="Введите описание объекта" class="form-control"></textarea><br>
+    <input type="text" name="image_url" placeholder="Введите ссылку на фото объекта" class="form-control"><br>
+    <button type="submit" class="btn btn-success">Добавить объект</button>
+</form>
+</div>
+</body>
+</html>
