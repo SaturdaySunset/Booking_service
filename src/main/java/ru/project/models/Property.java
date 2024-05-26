@@ -38,12 +38,19 @@ public class Property {
         this.full_text = full_text;
     }
 
+    public String getImage_url() {return image_url;}
+
+    public void setImage_url(String image_url) {this.image_url = image_url;}
+
+    public Boolean getEnable() {return enable;}
+
+    public void setEnable(Boolean enable) {this.enable = enable;}
+
     public Property(String title, String full_text, String image_url) {
         this.title = title;
         this.full_text = full_text;
         this.image_url = image_url;
     }
 
-    public Property() {
-    }
+    public Property() {}
 }

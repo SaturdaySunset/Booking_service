@@ -8,16 +8,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.project.models.Property;
+import ru.project.models.User;
 import ru.project.repo.ProperiesRepository;
+import ru.project.repo.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
+
 
 @Controller
 public class MainController {
 
     @Autowired
     private ProperiesRepository properiesRepository;
+    @Autowired
+    private UserRepository userRepository;
     @GetMapping("/")
     public String first(Model model) {
         model.addAttribute("title", "пользователь");
@@ -33,6 +39,19 @@ public class MainController {
         model.addAttribute("title","пользователь");
         return  "registration";
     }
+
+    @PostMapping("/registration")
+    public String registrationUserAdd(@RequestParam String username, @RequestParam String password, @RequestParam String email, Model model){
+        User user = new User(username, password, email);
+        if (user.getUsername().isEmpty() | user.getPassword().isEmpty() | user.getEmail().isEmpty()) {
+            return "redirect:/error";
+        }
+        else {
+            userRepository.save(user);
+            return "redirect:/list";
+        }
+    }
+
     @GetMapping("/list")
     public String list (Model model){
         model.addAttribute("title","пользователь");
@@ -57,7 +76,7 @@ public class MainController {
         Optional<Property> property = properiesRepository.findById(id);
         ArrayList<Property> res = new ArrayList<>();
         property.ifPresent(res::add);
-        model.addAttribute("property", property);
+        model.addAttribute("property", res);
         return "property_details";
     }
 

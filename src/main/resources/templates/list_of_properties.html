@@ -24,5 +24,8 @@
     <h3 th:text="${el.title}"></h3>
     <a th:href="'/list/' + ${el.id}">Детальнее</a>
 </div>
+<div>
+    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/list/add}'|">Добавить новый объект</button>
+</div>
 </body>
 </html>

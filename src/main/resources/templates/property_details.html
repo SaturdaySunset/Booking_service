@@ -20,7 +20,7 @@
 </head>
 <body>
 <div th:each="el : ${property}" class="alert alert-info mt-2">
-    <h3 th:text="${el.full_text}"></h3>
+    <h1 th:text="${el.full_text}"></h1>
     <a th:href="'/list/' + ${el.id} + '/book'">Забронировать</a>
     <a th:href="'/list/' + ${el.id} + '/remove'">Удалить</a>
 </div>
