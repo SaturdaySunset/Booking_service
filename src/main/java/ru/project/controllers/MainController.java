@@ -13,7 +13,6 @@ import ru.project.repo.ProperiesRepository;
 import ru.project.repo.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -34,6 +33,11 @@ public class MainController {
         model.addAttribute("title","пользователь");
         return  "login";
     }
+//    @PostMapping("/login")
+//    public String loginCheck(@RequestParam String email, @RequestParam String password, Model model){
+//
+//        return  "redirect:/list";
+//    }
     @GetMapping("/registration")
     public String registration(Model model){
         model.addAttribute("title","пользователь");
