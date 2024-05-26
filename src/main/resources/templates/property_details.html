@@ -16,13 +16,35 @@
             padding: 8px;
             text-align: left;
         }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-left: 20px;
+        }
+        .centered-image {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 70vh; /* Занимает всю высоту экрана */
+        }
+
+        .centered-image img {
+            max-width: 60%;
+            max-height: 60%;
+        }
     </style>
 </head>
 <body>
 <div th:each="el : ${property}" class="alert alert-info mt-2">
-    <h1 th:text="${el.full_text}"></h1>
-    <a th:href="'/list/' + ${el.id} + '/book'">Забронировать</a>
-    <a th:href="'/list/' + ${el.id} + '/remove'">Удалить</a>
+    <h1 th:text="${el.title}"></h1>
+    <h2 th:text="${el.full_text}"></h2>
+    <div class="centered-image">
+        <img th:src="${el.image_url}" alt="Картинка отсутствует">
+        <div style="text-align: center; margin-top: 10px;">
+            <a th:href="'/list/' + ${el.id} + '/book'" style="margin-right: 10px;">Забронировать</a>
+            <a th:href="'/list/' + ${el.id} + '/remove'">Удалить</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
