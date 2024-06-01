@@ -1,10 +1,12 @@
-package ru.project.models;
+package ru.bookingService.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class Property {
 
@@ -14,35 +16,19 @@ public class Property {
     private String title, full_text, image_url;
     private Boolean enable;
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getFull_text() {
-        return full_text;
-    }
-
     public void setFull_text(String full_text) {
         this.full_text = full_text;
     }
 
-    public String getImage_url() {return image_url;}
-
     public void setImage_url(String image_url) {this.image_url = image_url;}
-
-    public Boolean getEnable() {return enable;}
 
     public void setEnable(Boolean enable) {this.enable = enable;}
 

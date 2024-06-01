@@ -1,7 +1,8 @@
-package ru.project.repo;
+package ru.bookingService.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.project.models.Property;
+import ru.bookingService.models.Property;
+
 
 public interface ProperiesRepository extends CrudRepository<Property, Long> {
 }

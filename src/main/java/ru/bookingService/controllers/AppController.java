@@ -1,60 +1,63 @@
-package ru.project.controllers;
+package ru.bookingService.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import ru.project.models.Property;
-import ru.project.models.User;
-import ru.project.repo.ProperiesRepository;
-import ru.project.repo.UserRepository;
+import org.springframework.web.bind.annotation.*;
+import ru.bookingService.models.Application;
+import ru.bookingService.models.MyUser;
+import ru.bookingService.models.Property;
+import ru.bookingService.models.UserDTO;
+import ru.bookingService.repository.ProperiesRepository;
+import ru.bookingService.repository.UserRepository;
+import ru.bookingService.services.AppService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-
 @Controller
-public class MainController {
-
+//@RequestMapping("booking/v1")
+@AllArgsConstructor
+public class AppController {
+    private AppService service;
     @Autowired
     private ProperiesRepository properiesRepository;
     @Autowired
     private UserRepository userRepository;
+
     @GetMapping("/")
     public String first(Model model) {
         model.addAttribute("title", "пользователь");
         return "first";
     }
+
     @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("title","пользователь");
-        return  "login";
+    public String login(Model model) {
+        model.addAttribute("title", "пользователь");
+        return "login";
     }
-//    @PostMapping("/login")
+
+    //    @PostMapping("/login")
 //    public String loginCheck(@RequestParam String email, @RequestParam String password, Model model){
 //
 //        return  "redirect:/list";
 //    }
     @GetMapping("/registration")
-    public String registration(Model model){
-        model.addAttribute("title","пользователь");
-        return  "registration";
+    public String registration(Model model) {
+        model.addAttribute("title", "пользователь");
+        return "registration";
     }
 
     @PostMapping("/registration")
-    public String registrationUserAdd(@RequestParam String username, @RequestParam String password, @RequestParam String email, Model model){
-        User user = new User(username, password, email);
-        if (user.getUsername().isEmpty() | user.getPassword().isEmpty() | user.getEmail().isEmpty()) {
-            return "redirect:/error";
-        }
-        else {
-            userRepository.save(user);
-            return "redirect:/list";
-        }
+    public String registrationUserAdd(UserDTO user) {
+        service.addUser(user);
+        return "redirect:/list";
     }
+
+
 
     @GetMapping("/list")
     public String list (Model model){
@@ -64,6 +67,7 @@ public class MainController {
         return "list_of_properties";
     }
     @GetMapping("/list/add")
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String listAdd(Model model){
         return "list_of_properties-add";
     }
@@ -72,7 +76,7 @@ public class MainController {
     public String listPostAdd(@RequestParam String title, @RequestParam String full_text, @RequestParam String image_url, Model model){
         Property property = new Property(title, full_text, image_url);
         properiesRepository.save(property);
-        return "redirect:/list";
+        return "list";
     }
 
     @GetMapping("/list/{id}")
@@ -84,4 +88,16 @@ public class MainController {
         return "property_details";
     }
 
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public Application applicationByID(@PathVariable int id) {
+        return service.applicationByID(id);
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("title", "пользователь");
+        return "test";
+    }
 }

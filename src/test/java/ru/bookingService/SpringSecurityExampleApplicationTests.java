@@ -1,10 +1,10 @@
-package ru.project;
+package ru.bookingService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BookingServiceApplicationTests {
+class SpringSecurityExampleApplicationTests {
 
 	@Test
 	void contextLoads() {
