@@ -42,30 +42,31 @@
         <img th:src="${el.image_url}" alt="Картинка отсутствует">
         <div style="text-align: center; margin-top: 10px;">
             <a th:href="'/list/' + ${el.id} + '/book'" style="margin-right: 10px;">Забронировать</a>
-            <a th:href="'/list/' + ${el.id} + '/remove'">Удалить</a>
+            <button class="remove-button" th:data-id="${el.id}">Удалить</button>
         </div>
     </div>
 </div>
 <script>
-    const removeButtons = document.querySelectorAll('.alert-info.centered-image a:last-child');
+    const removeButtons = document.querySelectorAll('.remove-button');
 
     removeButtons.forEach((button) => {
       button.addEventListener('click', (event) => {
-        event.preventDefault(); // prevent the default link behavior
-        const propertyId = button.href.split('/').pop(); // extract the property ID from the href attribute
-        // send a request to the server to remove the property
+        event.preventDefault();
+        const propertyId = button.dataset.id;
+        console.log(`Removing property with ID ${propertyId}`);
         fetch('/list/' + propertyId + '/remove', { method: 'POST' })
-         .then((response) => response.json())
-         .then((data) => {
-            if (data.success) {
-              // remove the property from the list
+         .then((response) => {
+            console.log(`Response status: ${response.status}`);
+            if (response.ok) {
+              console.log('Property removed successfully');
               button.closest('.alert-info').remove();
             } else {
+              console.log('Error removing property:', response.statusText);
               alert('Error removing property');
             }
           })
          .catch((error) => {
-            console.error(error);
+            console.error('Error removing property:', error);
           });
       });
     });

@@ -7,15 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.bookingService.models.Application;
-import ru.bookingService.models.MyUser;
 import ru.bookingService.models.Property;
 import ru.bookingService.models.UserDTO;
-import ru.bookingService.repository.ProperiesRepository;
+import ru.bookingService.repository.PropertyRepository;
 import ru.bookingService.repository.UserRepository;
 import ru.bookingService.services.AppService;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,7 +22,7 @@ import java.util.Optional;
 public class AppController {
     private AppService service;
     @Autowired
-    private ProperiesRepository properiesRepository;
+    private PropertyRepository properiesRepository;
     @Autowired
     private UserRepository userRepository;
 
