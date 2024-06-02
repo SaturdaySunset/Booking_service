@@ -46,5 +46,29 @@
         </div>
     </div>
 </div>
+<script>
+    const removeButtons = document.querySelectorAll('.alert-info.centered-image a:last-child');
+
+    removeButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault(); // prevent the default link behavior
+        const propertyId = button.href.split('/').pop(); // extract the property ID from the href attribute
+        // send a request to the server to remove the property
+        fetch('/list/' + propertyId + '/remove', { method: 'POST' })
+         .then((response) => response.json())
+         .then((data) => {
+            if (data.success) {
+              // remove the property from the list
+              button.closest('.alert-info').remove();
+            } else {
+              alert('Error removing property');
+            }
+          })
+         .catch((error) => {
+            console.error(error);
+          });
+      });
+    });
+</script>
 </body>
 </html>

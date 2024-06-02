@@ -4,10 +4,10 @@
     <title>Список недвижимости</title>
     <style>
         body {
-            text-align: center; /* Center the content */
+            text-align: center;
         }
         table {
-            margin: 0 auto; /* Center the table */
+            margin: 0 auto;
             border-collapse: collapse;
             margin-top: 7rem;
         }
@@ -20,32 +20,60 @@
             max-width: 100%;
             height: auto;
         }
-        .centered-image {
+       .centered-image {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 20vh; /* Занимает всю высоту экрана */
+            height: 20vh;
         }
 
-        .centered-image img {
+       .centered-image img {
             max-width: 80%;
             max-height: 80%;
+        }
+       .card {
+            display: inline-block;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: calc(25% - 20px);
         }
     </style>
 </head>
 <body>
 <h1 style="text-align: center;">Список недвижимости</h1>
-<div th:each="el : ${properties}">
-    <div class="card" style="display: inline-block; border: 1px solid #ddd; padding: 10px; margin: 10px; width: calc(25% - 20px);">
-        <h3 th:text="${el.title}"></h3>
-        <div class="centered-image">
-            <img th:src="${el.image_url}" alt="Картинка отсутствует">
+<input id="search-input" type="search" placeholder="Введите текст для поиска">
+<div id="properties-list">
+    <!-- контейнер для карточек объектов недвижимости -->
+    <div th:each="el : ${properties}">
+        <div class="card">
+            <h3 th:text="${el.title}"></h3>
+            <div class="centered-image">
+                <img th:src="${el.image_url}" alt="Картинка отсутствует">
+            </div>
+            <a th:href="'/list/' + ${el.id}" style="display: block; text-align: center;">Детальнее</a>
         </div>
-        <a th:href="'/list/' + ${el.id}" style="display: block; text-align: center;">Детальнее</a>
     </div>
 </div>
 <div style="margin-top: 20px;">
     <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/list/add}'|">Добавить новый объект</button>
 </div>
+<script>
+    const searchInput = document.getElementById('search-input');
+    const propertiesList = document.getElementById('properties-list');
+
+    searchInput.addEventListener('input', (e) => {
+        const searchText = e.target.value.toLowerCase();
+        const cards = propertiesList.children; // массив карточек
+        for (const card of cards) {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(searchText)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
+</script>
 </body>
 </html>

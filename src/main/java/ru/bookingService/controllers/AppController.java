@@ -76,7 +76,7 @@ public class AppController {
     public String listPostAdd(@RequestParam String title, @RequestParam String full_text, @RequestParam String image_url, Model model){
         Property property = new Property(title, full_text, image_url);
         properiesRepository.save(property);
-        return "list";
+        return "/list";
     }
 
     @GetMapping("/list/{id}")
