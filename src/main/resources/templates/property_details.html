@@ -4,10 +4,10 @@
     <title>Список недвижимости</title>
     <style>
         body {
-            text-align: center; /* Center the content */
+            text-align: center;
         }
         table {
-            margin: 0 auto; /* Center the table */
+            margin: 0 auto;
             border-collapse: collapse;
             margin-top: 7rem;
         }
@@ -25,7 +25,7 @@
             display: block;
             justify-content: center;
             align-items: center;
-            height: 70vh; /* Занимает всю высоту экрана */
+            height: 70vh;
         }
 
         .centered-image img {
@@ -46,37 +46,10 @@
             </form>
 
             <form th:method="DELETE" th:action="@{/list/{id}(id=${el.getId()})}">
-                <input type="submit" value="Delete"/>
+                <input type="submit" value="Удалить"/>
             </form>
-        </div>
         </div>
     </div>
 </div>
-
-<!--<script>-->
-<!--    const removeButtons = document.querySelectorAll('.remove-button');-->
-
-<!--    removeButtons.forEach((button) => {-->
-<!--      button.addEventListener('click', (event) => {-->
-<!--        event.preventDefault();-->
-<!--        const propertyId = button.dataset.id;-->
-<!--        console.log(`Removing property with ID ${propertyId}`);-->
-<!--        fetch('/list/' + propertyId + '/remove', { method: 'POST' })-->
-<!--         .then((response) => {-->
-<!--            console.log(`Response status: ${response.status}`);-->
-<!--            if (response.ok) {-->
-<!--              console.log('Property removed successfully');-->
-<!--              button.closest('.alert-info').remove();-->
-<!--            } else {-->
-<!--              console.log('Error removing property:', response.statusText);-->
-<!--              alert('Error removing property');-->
-<!--            }-->
-<!--          })-->
-<!--         .catch((error) => {-->
-<!--            console.error('Error removing property:', error);-->
-<!--          });-->
-<!--      });-->
-<!--    });-->
-<!--</script>-->
 </body>
 </html>

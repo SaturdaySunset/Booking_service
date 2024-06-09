@@ -16,10 +16,10 @@ import java.util.Date;
 public class AppService {
     private MyUserService myUserService;
     private UserRepository repository;
+    private PropertyService propertyService;
     private PasswordEncoder passwordEncoder;
     private final BookingRepository bookingRepository;
     private final PropertyRepository propertyRepository;
-    private final UserRepository userRepository;
 
 
     public void addUser(UserDTO user) {
@@ -37,7 +37,7 @@ public class AppService {
         Property property = propertyRepository.findById(propertyId).orElseThrow();
         MyUser user = myUserService.getUserById(userId);
 
-        if (property.isAvailable(startDate, endDate)) {
+        if (propertyService.isAvailable(startDate, endDate)) {
             Booking booking = new Booking();
             booking.setUser(user);
             booking.setProperty(property);

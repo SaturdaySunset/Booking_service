@@ -21,7 +21,6 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "property_id")
     private Property property;
-
     private Date startDate;
     private Date endDate;
 }
