@@ -1,4 +1,4 @@
-package ru.bookingService.entities;
+package ru.bookingService.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +12,6 @@ public class UserDTO {
     private String username;
     private String email;
     private String password;
+    private String roles;
 
 }

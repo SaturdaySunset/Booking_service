@@ -3,6 +3,7 @@ package ru.bookingService.services;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.bookingService.DTO.UserDTO;
 import ru.bookingService.entities.*;
 import ru.bookingService.repository.BookingRepository;
 import ru.bookingService.repository.PropertyRepository;
@@ -25,8 +26,9 @@ public class AppService {
 
         MyUser userEntity = MyUser.builder()
                 .name(user.getUsername())
-                        .password(user.getPassword())
-                                .build();
+                .password(user.getPassword())
+                .roles(user.getRoles())
+                .build();
 
         repository.save(userEntity);
     }

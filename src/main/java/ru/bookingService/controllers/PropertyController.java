@@ -20,6 +20,7 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("list/{id}")
     public String removeProperty(@PathVariable Long id) {
         propertyService.removeProperty(id);
