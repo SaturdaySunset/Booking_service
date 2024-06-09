@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Список недвижимости</title>
     <style>
@@ -41,11 +41,12 @@
     <div class="centered-image">
         <img th:src="${el.image_url}" alt="Картинка отсутствует">
         <div style="text-align: center; margin-top: 10px;">
-            <a th:href="'/list/' + ${el.id} + '/book'" style="margin-right: 10px;">Забронировать</a>
+            <button class="btn" type="button" th:onclick="'/list/' + ${el.id} + '/booking_form'" style="margin-right: 10px;">Забронировать</button>
             <button class="remove-button" th:data-id="${el.id}">Удалить</button>
         </div>
     </div>
 </div>
+
 <script>
     const removeButtons = document.querySelectorAll('.remove-button');
 

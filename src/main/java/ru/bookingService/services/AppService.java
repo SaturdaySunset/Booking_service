@@ -4,11 +4,12 @@ import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.bookingService.models.UserDTO;
+import ru.bookingService.models.*;
+import ru.bookingService.repository.BookingRepository;
+import ru.bookingService.repository.PropertyRepository;
 import ru.bookingService.repository.UserRepository;
-import ru.bookingService.models.Application;
-import ru.bookingService.models.MyUser;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -18,20 +19,10 @@ public class AppService {
     private List<Application> applications;
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;
+    private final BookingRepository bookingRepository;
+    private final PropertyRepository propertyRepository;
+    private final UserRepository userRepository;
 
-  /*  @PostConstruct
-    public void loadAppInDB(){
-        Faker faker = new Faker();
-        applications = IntStream.rangeClosed(1, 100)
-                .mapToObj(i -> Application.builder()
-                        .id(i)
-                        .name(faker.app().name())
-                        .author(faker.app().author())
-                        .version(faker.app().version())
-                        .build())
-                .toList();
-    }
-*/
     public List<Application> allApplications() {
         return applications;
     }
@@ -52,5 +43,24 @@ public class AppService {
                                 .build();
 
         repository.save(userEntity);
+    }
+    public void bookProperty(Long propertyId, Long userId, Date startDate, Date endDate) {
+        Property property = propertyRepository.findById(propertyId).orElseThrow();
+        MyUser user = getUserById(userId);
+
+        if (property.isAvailable(startDate, endDate)) {
+            Booking booking = new Booking();
+            booking.setUser(user);
+            booking.setProperty(property);
+            booking.setStartDate(startDate);
+            booking.setEndDate(endDate);
+
+            bookingRepository.save(booking);
+        } else {
+            throw new RuntimeException("Property is not available for the selected dates");
+        }
+    }
+    private MyUser getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow();
     }
 }

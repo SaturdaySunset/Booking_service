@@ -15,10 +15,14 @@ import java.util.Optional;
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository repository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<MyUser> user = repository.findByName(username);
         return user.map(MyUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+    }
+    public MyUser getUserByUsername(String username) {
+        return repository.findByName(username).orElseThrow();
     }
 }

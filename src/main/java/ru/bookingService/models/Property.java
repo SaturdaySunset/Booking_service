@@ -2,9 +2,14 @@ package ru.bookingService.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Entity
+@Setter
 public class Property {
 
     @Id
@@ -12,6 +17,19 @@ public class Property {
     private Long id;
     private String title, full_text, image_url;
     private Boolean enable;
+    private Date startDate;
+    private Date endDate;
+    @OneToMany(mappedBy = "property")
+    private List<Booking> bookings;
+    public boolean isAvailable(Date startDate, Date endDate) {
+        for (Booking booking : bookings) {
+            if (booking.getStartDate().before(endDate) && booking.getEndDate().after(startDate)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -34,6 +52,7 @@ public class Property {
         this.full_text = full_text;
         this.image_url = image_url;
     }
+
 
     public Property() {}
 }

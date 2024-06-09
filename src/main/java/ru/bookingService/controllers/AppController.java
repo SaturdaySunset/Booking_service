@@ -14,6 +14,7 @@ import ru.bookingService.repository.UserRepository;
 import ru.bookingService.services.AppService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -74,7 +75,7 @@ public class AppController {
     public String listPostAdd(@RequestParam String title, @RequestParam String full_text, @RequestParam String image_url, Model model){
         Property property = new Property(title, full_text, image_url);
         properiesRepository.save(property);
-        return "/list";
+        return "redirect:/list";
     }
 
     @GetMapping("/list/{id}")
@@ -98,4 +99,9 @@ public class AppController {
         model.addAttribute("title", "пользователь");
         return "test";
     }
+    @GetMapping("/list/{id}/booking_form")
+    public String booking(Model model) {model.addAttribute("title", "пользвоатель");
+        return "booking_form";
+    }
+
 }
