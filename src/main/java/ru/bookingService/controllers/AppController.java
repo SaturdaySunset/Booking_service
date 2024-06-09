@@ -99,9 +99,4 @@ public class AppController {
         model.addAttribute("title", "пользователь");
         return "test";
     }
-    @GetMapping("/list/{id}/booking_form")
-    public String booking(Model model) {model.addAttribute("title", "пользователь");
-        return "booking_form";
-    }
-
 }

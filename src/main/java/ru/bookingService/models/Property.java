@@ -13,6 +13,7 @@ import java.util.List;
 public class Property {
 
     @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,8 +21,10 @@ public class Property {
     private Boolean enable;
     private Date startDate;
     private Date endDate;
+
     @OneToMany(mappedBy = "property")
     private List<Booking> bookings;
+
     public boolean isAvailable(Date startDate, Date endDate) {
         for (Booking booking : bookings) {
             if (booking.getStartDate().before(endDate) && booking.getEndDate().after(startDate)) {

@@ -11,11 +11,11 @@ public class PropertyBooking {
     private Date startDate;
     private Date endDate;
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+//    public void setStartDate(Date startDate) {
+//        this.startDate = startDate;
+//    }
+//
+//    public void setEndDate(Date endDate) {
+//        this.endDate = endDate;
+//    }
 }

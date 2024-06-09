@@ -5,8 +5,8 @@
     <title>Booking</title>
 </head>
 <body>
-<div>
-    <form th:action="@{/list/{id}/booking_form(id=${propertyId})}" method="post">
+<div th:each="el : ${property}" class="alert alert-info mt-2">
+    <form th:action="'/list/' + ${property.id} + '/booking_form'" method="post">
         <label for="startDate">Дата начала:</label>
         <input type="date" id="startDate" name="startDate" required>
 
