@@ -1,4 +1,4 @@
-package ru.bookingService.models;
+package ru.bookingService.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

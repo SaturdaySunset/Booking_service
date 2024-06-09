@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.bookingService.repository.UserRepository;
 import ru.bookingService.config.MyUserDetails;
-import ru.bookingService.models.MyUser;
+import ru.bookingService.entities.MyUser;
 
 import java.util.Optional;
 

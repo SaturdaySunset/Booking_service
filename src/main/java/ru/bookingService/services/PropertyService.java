@@ -3,8 +3,8 @@ package ru.bookingService.services;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.bookingService.models.Booking;
-import ru.bookingService.models.Property;
+import ru.bookingService.entities.Booking;
+import ru.bookingService.entities.Property;
 import ru.bookingService.repository.BookingRepository;
 import ru.bookingService.repository.PropertyRepository;
 

@@ -2,7 +2,7 @@ package ru.bookingService.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.bookingService.models.MyUser;
+import ru.bookingService.entities.MyUser;
 
 import java.util.Optional;
 

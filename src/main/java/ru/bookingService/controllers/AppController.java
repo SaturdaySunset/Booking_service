@@ -2,19 +2,16 @@ package ru.bookingService.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.bookingService.models.Application;
-import ru.bookingService.models.Property;
-import ru.bookingService.models.UserDTO;
+import ru.bookingService.entities.Property;
+import ru.bookingService.entities.UserDTO;
 import ru.bookingService.repository.PropertyRepository;
 import ru.bookingService.repository.UserRepository;
 import ru.bookingService.services.AppService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -87,16 +84,4 @@ public class AppController {
         return "property_details";
     }
 
-
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public Application applicationByID(@PathVariable int id) {
-        return service.applicationByID(id);
-    }
-
-    @GetMapping("/test")
-    public String test(Model model) {
-        model.addAttribute("title", "пользователь");
-        return "test";
-    }
 }

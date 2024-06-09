@@ -1,14 +1,11 @@
 package ru.bookingService.controllers;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.bookingService.models.Property;
-import ru.bookingService.models.PropertyBooking;
+import ru.bookingService.entities.Property;
 import ru.bookingService.services.PropertyService;
 
 import java.util.Date;

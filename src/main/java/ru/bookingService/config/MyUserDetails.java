@@ -3,12 +3,10 @@ package ru.bookingService.config;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.bookingService.models.MyUser;
+import ru.bookingService.entities.MyUser;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
     private MyUser user;
