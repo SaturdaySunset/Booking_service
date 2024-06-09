@@ -14,7 +14,7 @@ public class BookingController {
         private PropertyService propertyService;
 
         @PostMapping("/list/{id}/booking_form")
-        public String bookProperty(@PathVariable(value = "id") long id, @RequestBody PropertyBooking propertyBooking) {
+        public String bookProperty(@PathVariable(value = "id") Long id, @RequestBody PropertyBooking propertyBooking) {
             Property property = propertyService.getPropertyById(id);
             propertyService.bookProperty(property, propertyBooking.getStartDate(), propertyBooking.getEndDate());
             return "{\"message\":\"Property booked successfully\"}";

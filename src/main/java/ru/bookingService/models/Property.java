@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 public class Property {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,10 +31,6 @@ public class Property {
         return true;
     }
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public void setTitle(String title) {
         this.title = title;

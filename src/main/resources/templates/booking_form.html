@@ -5,15 +5,16 @@
     <title>Booking</title>
 </head>
 <body>
-<<div>
-    <label for="startDate">Дата начала:</label>
-    <input type="date" id="startDate" required>
+<div>
+    <form th:action="@{/list/{id}/booking_form(id=${propertyId})}" method="post">
+        <label for="startDate">Дата начала:</label>
+        <input type="date" id="startDate" name="startDate" required>
 
-    <label for="endDate">Дата окончания:</label>
-    <input type="date" id="endDate" required>
+        <label for="endDate">Дата окончания:</label>
+        <input type="date" id="endDate" name="endDate" required>
 
-    <button class="btn btn-primary" type="button" th:onclick="bookProperty(${id}, document.getElementById('startDate').value, document.getElementById('endDate').value)">Забронировать</button>
-</div>
+        <button type="submit">Забронировать</button>
+    </form>
 </div>
 </body>
 </html>
