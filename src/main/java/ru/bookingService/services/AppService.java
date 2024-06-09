@@ -14,6 +14,7 @@ import java.util.Date;
 @Service
 @AllArgsConstructor
 public class AppService {
+    private MyUserService myUserService;
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;
     private final BookingRepository bookingRepository;
@@ -34,7 +35,7 @@ public class AppService {
     }
     public void bookProperty(Long propertyId, Long userId, Date startDate, Date endDate) {
         Property property = propertyRepository.findById(propertyId).orElseThrow();
-        MyUser user = getUserById(userId);
+        MyUser user = myUserService.getUserById(userId);
 
         if (property.isAvailable(startDate, endDate)) {
             Booking booking = new Booking();
@@ -47,8 +48,5 @@ public class AppService {
         } else {
             throw new RuntimeException("Property is not available for the selected dates");
         }
-    }
-    private MyUser getUserById(Long userId) {
-        return userRepository.findById(userId).orElseThrow();
     }
 }

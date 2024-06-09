@@ -7,7 +7,6 @@ import ru.bookingService.entities.MyUser;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
@@ -28,6 +27,8 @@ public class MyUserDetails implements UserDetails {
     public String getPassword() {
         return user.getPassword();
     }
+
+    public Long getId(){return user.getId();}
 
     @Override
     public String getUsername() {

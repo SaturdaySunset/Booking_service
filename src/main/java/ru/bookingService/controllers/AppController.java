@@ -79,7 +79,4 @@ public class AppController {
         model.addAttribute("property", res);
         return "property_details";
     }
-
-//    @GetMapping("/booked")
-//    public String list_booked()
 }

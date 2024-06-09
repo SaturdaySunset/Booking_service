@@ -34,25 +34,14 @@ public class Property {
         return true;
     }
 
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setFull_text(String full_text) {
-        this.full_text = full_text;
-    }
-
-    public void setImage_url(String image_url) {this.image_url = image_url;}
-
-    public void setEnable(Boolean enable) {this.enable = enable;}
-
     public Property(String title, String full_text, String image_url) {
         this.title = title;
         this.full_text = full_text;
         this.image_url = image_url;
     }
 
-
     public Property() {}
 }
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }

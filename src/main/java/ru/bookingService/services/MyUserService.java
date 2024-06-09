@@ -12,7 +12,7 @@ import ru.bookingService.entities.MyUser;
 import java.util.Optional;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class MyUserService implements UserDetailsService {
     @Autowired
     private UserRepository repository;
 
@@ -24,5 +24,8 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     public MyUser getUserByUsername(String username) {
         return repository.findByName(username).orElseThrow();
+    }
+    public MyUser getUserById(Long userId) {
+        return repository.findById(userId).orElseThrow();
     }
 }
