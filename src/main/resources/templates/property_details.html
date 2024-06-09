@@ -41,36 +41,42 @@
     <div class="centered-image">
         <img th:src="${el.image_url}" alt="Картинка отсутствует">
         <div style="text-align: center; margin-top: 10px;">
-            <button class="btn" type="button" th:onclick="'/list/' + ${el.id} + '/booking_form'" style="margin-right: 10px;">Забронировать</button>
-            <button class="remove-button" th:data-id="${el.id}">Удалить</button>
+            <form th:method="GET" th:action="@{/list/{id}/booking_form(id=${el.getId()})}">
+                <input type="submit" value="Забронировать"/>
+            </form>
+
+            <form th:method="DELETE" th:action="@{/list/{id}(id=${el.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </div>
         </div>
     </div>
 </div>
 
-<script>
-    const removeButtons = document.querySelectorAll('.remove-button');
+<!--<script>-->
+<!--    const removeButtons = document.querySelectorAll('.remove-button');-->
 
-    removeButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        const propertyId = button.dataset.id;
-        console.log(`Removing property with ID ${propertyId}`);
-        fetch('/list/' + propertyId + '/remove', { method: 'POST' })
-         .then((response) => {
-            console.log(`Response status: ${response.status}`);
-            if (response.ok) {
-              console.log('Property removed successfully');
-              button.closest('.alert-info').remove();
-            } else {
-              console.log('Error removing property:', response.statusText);
-              alert('Error removing property');
-            }
-          })
-         .catch((error) => {
-            console.error('Error removing property:', error);
-          });
-      });
-    });
-</script>
+<!--    removeButtons.forEach((button) => {-->
+<!--      button.addEventListener('click', (event) => {-->
+<!--        event.preventDefault();-->
+<!--        const propertyId = button.dataset.id;-->
+<!--        console.log(`Removing property with ID ${propertyId}`);-->
+<!--        fetch('/list/' + propertyId + '/remove', { method: 'POST' })-->
+<!--         .then((response) => {-->
+<!--            console.log(`Response status: ${response.status}`);-->
+<!--            if (response.ok) {-->
+<!--              console.log('Property removed successfully');-->
+<!--              button.closest('.alert-info').remove();-->
+<!--            } else {-->
+<!--              console.log('Error removing property:', response.statusText);-->
+<!--              alert('Error removing property');-->
+<!--            }-->
+<!--          })-->
+<!--         .catch((error) => {-->
+<!--            console.error('Error removing property:', error);-->
+<!--          });-->
+<!--      });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

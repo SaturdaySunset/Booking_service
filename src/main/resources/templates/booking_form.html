@@ -6,12 +6,11 @@
 </head>
 <body>
 <div th:each="el : ${property}" class="alert alert-info mt-2">
-    <form th:action="'/list/' + ${property.id} + '/booking_form'" method="post">
+    <form th:action="@{/list/{id}/booking_form(id=${el.getId()})}" method="POST">
         <label for="startDate">Дата начала:</label>
-        <input type="date" id="startDate" name="startDate" required>
-
+        <input type="date" id="startDate" name="startDate" class="form-control" required>
         <label for="endDate">Дата окончания:</label>
-        <input type="date" id="endDate" name="endDate" required>
+        <input type="date" id="endDate" name="endDate" class="form-control" required>
 
         <button type="submit">Забронировать</button>
     </form>
