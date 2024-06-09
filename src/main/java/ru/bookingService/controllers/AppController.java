@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.bookingService.entities.Property;
 import ru.bookingService.DTO.UserDTO;
 import ru.bookingService.repository.PropertyRepository;
-import ru.bookingService.repository.UserRepository;
 import ru.bookingService.services.AppService;
 
 import java.util.ArrayList;
@@ -22,8 +21,6 @@ public class AppController {
     private AppService service;
     @Autowired
     private PropertyRepository properiesRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping("/")
     public String first(Model model) {
