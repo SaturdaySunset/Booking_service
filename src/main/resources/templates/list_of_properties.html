@@ -41,9 +41,11 @@
 </head>
 <body>
 <h1 style="text-align: center;">Список недвижимости</h1>
+<div style="margin-top: 20px; text-align: center;">
+    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/bookings}'|">Список броней</button>
+</div>
 <input id="search-input" type="search" placeholder="Введите текст для поиска">
 <div id="properties-list">
-    <!-- контейнер для карточек объектов недвижимости -->
     <div th:each="el : ${properties}">
         <div class="card">
             <h3 th:text="${el.title}"></h3>

@@ -29,5 +29,8 @@
         <td th:text="${#dates.format(booking.endDate, 'yyyy-MM-dd')}">End Date</td>
     </tr>
 </table>
+<div style="margin-top: 20px; text-align: center;">
+    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/list}'|">Cписок недвижимости</button>
+</div>
 </body>
 </html>

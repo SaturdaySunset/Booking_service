@@ -35,7 +35,6 @@ public class BookingController {
             model.addAttribute("property", propertyService.getPropertyById(id));
             return "booking_form";
         }
-
     @PostMapping("/list/{id}/booking_form")
     public String bookProperty(@PathVariable(value = "id") Long id,
                                @AuthenticationPrincipal MyUserDetails userDetails,

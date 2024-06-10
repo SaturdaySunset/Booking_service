@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
-//@RequestMapping("booking/v1")
 @AllArgsConstructor
 public class AppController {
     private AppService service;
@@ -55,7 +54,6 @@ public class AppController {
         return "list_of_properties";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/list/add")
     public String listAdd(Model model) {
         return "list_of_properties-add";
