@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookings</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Bookings</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Property</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}">Id</td>
+        <td th:text="${booking.user.name}">Username</td>
+        <td th:text="${booking.property.title}">Property</td>
+        <td th:text="${#dates.format(booking.startDate, 'yyyy-MM-dd')}">Start Date</td>
+        <td th:text="${#dates.format(booking.endDate, 'yyyy-MM-dd')}">End Date</td>
+    </tr>
+</table>
+</body>
+</html>
