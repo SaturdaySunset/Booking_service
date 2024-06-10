@@ -16,38 +16,69 @@
             padding: 8px;
             text-align: left;
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-left: 20px;
-        }
-        .centered-image {
-            display: block;
+        .property-container {
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh;
+            margin-top: 50px;
         }
-
-        .centered-image img {
-            max-width: 60%;
-            max-height: 60%;
+        .image-container {
+            flex: 1;
+            margin-right: 50px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .text-container {
+            flex: 1;
+            text-align: left;
+        }
+        .text-container h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .text-container h2 {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-container button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-container button[type="submit"]:hover {
+            background-color: #3e8e41;
         }
     </style>
 </head>
 <body>
 <div th:each="el : ${property}" class="alert alert-info mt-2">
-    <h1 th:text="${el.title}"></h1>
-    <h2 th:text="${el.full_text}"></h2>
-    <div class="centered-image">
-        <img th:src="${el.image_url}" alt="Картинка отсутствует">
-        <div style="text-align: center; margin-top: 10px;">
-            <form th:method="GET" th:action="@{/list/{id}/booking_form(id=${el.getId()})}">
-                <input type="submit" value="Забронировать"/>
-            </form>
-
-            <form th:method="DELETE" th:action="@{/list/{id}(id=${el.getId()})}">
-                <input type="submit" value="Удалить"/>
-            </form>
+    <div class="property-container">
+        <div class="image-container">
+            <img th:src="${el.image_url}" alt="Картинка отсутствует">
+        </div>
+        <div class="text-container">
+            <h1 th:text="${el.title}"></h1>
+            <h2 th:text="${el.full_text}"></h2>
+            <div class="button-container">
+                <form th:method="GET" th:action="@{/list/{id}/booking_form(id=${el.getId()})}">
+                    <input type="submit" value="Забронировать"/>
+                </form>
+                <form th:method="DELETE" th:action="@{/list/{id}(id=${el.getId()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </div>
         </div>
     </div>
 </div>
